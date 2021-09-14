@@ -1703,13 +1703,13 @@ def parse_args():
                         help=ARG_SUPPRESS, default=ARG_SUPPRESS)
 
     parser.add_argument(
-        '-w', '--warning', default='20|5', metavar='400|30',
-        help='Warning limits for Download|Upload given in Mbit\'s. ex. 300|40',
+        '-w', '--warning', default='400,30', metavar='400,30',
+        help='Warning limits for Download|Upload given in Mbit\'s. ex. 400,30',
     )
 
     parser.add_argument(
-        '-c', '--critical', metavar='10|2', default='300|20',
-        help='Critical limits for Download|Upload given in Mbit\'s. ex. 100|20',
+        '-c', '--critical', metavar='200,10', default='200,10',
+        help='Critical limits for Download,Upload given in Mbit\'s. ex. 200,10',
     )
 
     options = parser.parse_args()
@@ -1773,8 +1773,8 @@ def shell():
     if args.version:
         version()
 
-    warnings = args.warning.split("|")
-    criticals = args.critical.split("|")
+    warnings = args.warning.split(",")
+    criticals = args.critical.split(",")
     download_warning = int(warnings[0])
     download_critical = int(criticals[0])
     upload_warning = int(warnings[1])
